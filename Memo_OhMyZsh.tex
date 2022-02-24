@@ -1,0 +1,88 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[english,french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{color}
+\usepackage{hyperref}
+
+\title{MEMO Oh-My-Zsh}
+\author{krystof}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\textbf{Oh-My-Zsh} propose un cadre pour la gestion de la configuration de \textbf{zsh}. Il utilise pour cela de multiples fonctions, des plugins et des thèmes personnalisés et utiles.
+\medskip
+
+\section{Installation}
+Lors de son installation \textbf{Oh-My-Zsh} crée une sauvegarde du fichier \textbf{.zshrc} puis le remplace par sa propre version. Toute configuration personnalisée doit alors être copiée dans ce fichier.
+\medskip
+
+\section{Sélectionner un thème}
+\begin{itemize}
+	\item Via la variable \verb|ZSH_THEME| dans le fichier \textbf{.zshrc}.
+	\item Liste des thèmes livrés avec \textbf{Oh-My-Zsh}: \url{https://github.com/ohmyzsh/tree/master/themes}.
+	\item Activer un thème: \verb|ZSH_THEME=nomduthème|.
+	\item Ne pas activer un thème: \verb|ZSH_THEME=""|.
+	\item Captures d'écran et descriptions de thèmes: \url{https://github.com/ohmyzsh/ohmyzsh/wiki/Themes}.
+	\item D'autres thèmes: 
+	
+	\url{https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes}.
+\end{itemize}
+\medskip
+
+\section{Les plugins}
+Ajouter un plugin: \verb|plugins=(nom_plugin)| dans le fichier \textbf{.zshrc}. Pour une liste de plugins, voir:
+
+\url{https://github.com/ohmyzsh/ohmyzsh/wiki/plugins}
+\medskip
+
+\section{L'auto-suggestion \textbf{FTW!}}
+Un plugin d'auto-suggestion suggère des commandes au fur et à mesure de leur saisie en se basant sur l'historique.
+
+Installation par le clonage du dépôt:
+\begin{verbatim}
+$ git clone https://github.com/zsh-users/zsh-autosuggestions ${
+ZSH_CUSTOM:~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions|
+\end{verbatim}
+
+Activation: \verb|plugins=(zsh-autosuggestions)|.
+
+Si la suggestion proposée est celle recherchée, appuyer alors sur $\rightarrow$ pour l'accepter.
+\medskip
+
+\section{Navigation dans les fichiers}
+Pour naviguer dans les répertoires du système de fichier il n'est pas nécessaire d'utiliser la commande \verb|cd|. Commencer par saisir le nom d'un chemin, puis appuyer sur la touche \textbf{<Tab>} pour dérouler une liste de tous les répertoires possibles. Continuer d'appuyer sur la touche \textbf{<Tab>} pour sélectionner un répertoire et taper \textbf{<Entrée>} pour se rendre dans le répertoire.
+\medskip
+
+Pour une liste des alias liés à la navigation dans les répertoires:
+
+\url{https://github.com/ohmyzsh/ohmyzsh/wiki/Cheatsheet#directory}
+\medskip
+
+\textbf{Oh-My-Zsh} supporte la complétion de chemin dynamique. Par exemple, en saisissant: \verb|$ ~/Do/DE/| suivi de la touche \textbf{<Tab>}, le chemin sera alors étendu au répertoire \verb|~/Documents/DEVELOPPEMENT|.
+\medskip
+
+Il est même possible de faire glisser un répertoire dans la fenêtre du terminal pour accéder au répertoire dans le terminal.
+\medskip
+
+\section{Travailler avec \textbf{git}}
+Avec le plugins \textbf{git} nous disposons de toute une kyrielle d'alias. Voir:
+
+\url{https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git}
+\medskip
+
+Possibilité de créer son propre alias réunissant plusieurs commandes. Par exemple, ajouter les lignes suivantes dans \textbf{.zshrc}:
+\begin{verbatim}
+	function acp(){
+		git add.
+		git commit -m "$1"
+		git push
+	}
+\end{verbatim}
+Saisir alors \verb|$ acp "mon message de commit"|: ajoute tous les fichiers modifiés, réalise un commit avec le message saisi, puis envoie le tout vers le \textit{repository}.
+
+\end{document}
